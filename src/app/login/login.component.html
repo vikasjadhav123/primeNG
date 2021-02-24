@@ -5,7 +5,7 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="loginForm">
                 <div class="form-group">
                     <label  class="p-float-label" for="float-input">Username</label>
                     <input type="text" pInputText formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
@@ -20,11 +20,10 @@
                         <div *ngIf="f.password.errors.required">Password is required</div>
                     </div>
                 </div>
-                <button [disabled]="loading" class="btn btn-primary">
-                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-                    Login
+                <button pButton type="button" label="Login" (click)="onSubmit()" [disabled]="loading">
+                    <span *ngIf="loading"></span>
                 </button>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error}}</div>
+                <div *ngIf="error" class="ng-invalid ng-dirty">{{error}}</div>
             </form>
         </div>
     </div>

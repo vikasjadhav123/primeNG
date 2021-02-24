@@ -15,7 +15,7 @@
     
       <div style="background-color: rgb(241, 248, 246);border: 1px solid rgb(180, 136, 136);" class="container">
         <div class="row">
-          <div style="border: 1px solid red;" class="col-sm-6">
+          <div style="border: 1px solid red;" class="col-sm-5">
             <label>
               <h4>Post Information</h4>
             </label>
@@ -23,41 +23,38 @@
     
             <div class="form-group" class="col-3">
               <label for="id">ID:</label>
-              <input formControlName="id" id="id" type="text" class="form-control">
-              
-            
+              <input pInputText formControlName="id" id="id" type="text" class="form-control">
             </div>
     
             <div class="col-3">
               <label for="title">Title:</label>
-              <input formControlName="title" id="title" type="text" class="form-control">
+              <input pInputText formControlName="title" id="title" type="text" class="form-control">
             </div>
     
             <br>
     
             <div class="form-group" class="col-3">
               <label>Discription:</label> &nbsp;
-              <input formControlName="discription" id="discription" type="text" class="from-controls">
+              <input pInputText formControlName="discription" id="discription" type="text" class="from-controls">
             </div>
     
             <br>
     
             <div class="form-group" class="col-3">
               <label>Publish Date</label>
-              <input formControlName="date" id="date" type="text" class="form-control">
+              <input pInputText formControlName="date" id="date" type="text" class="form-control">
             </div>
     
             <br>
     
             <div class="row">
               <div class="col-sm-6">
-                <div>
-                  <button type="submit" [disabled]="!form.valid" (click)="Submit()">{{isAdd ? 'Add' : 'Update'}}</button>
-                </div>
+                <button pButton type="button" label=" {{isAdd ? 'Add' : 'Update'}}" (click)="Submit()"[disabled]="!form.valid">    
+                </button>  
               </div>
               <div class="col-sm-6">
                 <div>
-                  <button type="submit" (click)="form.reset()">Reset</button>
+                  <button pButton type="button" label=" Reset" (click)="form.reset()"></button>
                 </div>
               </div>
             </div>
@@ -67,35 +64,39 @@
           </div>
     
     
-          <div class="col-sm-6">
+          <div class="col-sm-7">
             <label>
               <h4>Post Details</h4>
             </label>
             <hr>
     
-            <table class="table table-striped table-bordered table-condensed">
-              <thead>
+            <p-table  [value]="employee">
+                <ng-template pTemplate="header">
                 <tr>
                   <th>ID</th>
                   <th>Title</th>
-                  <th>Discription</th>
-                  <th>SatrtDate</th>
+                  <th>Desc</th>
+                  <th>StartDate</th>
                   <th>Action</th>
                 </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let e of employee">
+                </ng-template>
+            
+            <ng-template pTemplate="body" let-e>
+                <tr>
                   <td>{{e.id}}</td>
                   <td>{{e.title}}</td>
                   <td>{{e.discription}}</td>
                   <td>{{e.date}}</td>
                   <td>
-                    <button (click)="deleterecord(e.id)" >delete</button>
-                    <button (click)="edit(e.id)">Edit</button>
+                    <button  pButton type="button" label=" Delete" (click)="deleterecord(e.id)" ></button>
                   </td>
+                  <td>
+                    <button  pButton type="button" label=" Edit" (click)="edit(e.id)"></button>
+                  </td>
+                  
                 </tr>
-              </tbody>
-            </table>
+              </ng-template>
+            </p-table>
     
           </div>
     

@@ -14,6 +14,7 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import {ButtonModule} from 'primeng/button';
     ReactiveFormsModule,
     HttpClientModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    TableModule
     
     
   ],
@@ -38,7 +40,8 @@ import {ButtonModule} from 'primeng/button';
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
 
     // provider used to create fake backend
-    fakeBackendProvider
+    fakeBackendProvider,
+  
   ],
   bootstrap: [AppComponent]
 })

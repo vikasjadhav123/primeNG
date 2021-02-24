@@ -5,6 +5,7 @@ import { User } from '../_models';
 import { UserService, AuthenticationService } from '../_services';
 
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { PostDataService } from '../_services/post-data.service';
 
 
 
@@ -15,16 +16,20 @@ export class HomeComponent {
     title = 'App';
 
     isAdd: boolean = true;
+    employee: any =[];
+    
 
-    employee: any = [];
-
-    constructor(private userService: UserService, private fb: FormBuilder) { }
+    constructor(private userService: UserService, private postDataService: PostDataService, private fb: FormBuilder) { }
 
     ngOnInit() {
         this.loading = true;
         this.userService.getAll().pipe(first()).subscribe(users => {
             this.loading = false;
             this.users = users;
+        });
+
+        this.postDataService.getAllemployeePosts().subscribe(posts =>{
+            this.employee= posts;
         });
     }
 
@@ -40,47 +45,35 @@ export class HomeComponent {
 
 
     Submit() {
-        if (this.isAdd) {
-            console.log(this.form.value);
-            this.Addfun();
-            console.log(this.employee);
-        }
-        else {
-            let emp = this.employee.find((s: any) => s.id == this.form.value.id);
-            emp.title = this.form.value.title;
-            emp.discription = this.form.value.discription;
-            emp.date = this.form.value.date;
-            this.isAdd =true;
-        }
-        this.form.reset();
+        
+        this.postDataService.submitdata(this.isAdd,this.form).subscribe(post =>{
+           // alert('res'+post);
+            if(!this.isAdd){
+            this.isAdd = true;
+            }
+            
+        });
+       
     }
 
     deleterecord(id: any) {
-        let empIndex = this.employee.findIndex((s: any) => s.id == id);
-
-        this.employee.splice(empIndex, 1);
-        alert("YOU WANT TO DELETE RECORD.....");
+        this.postDataService.deleterecord(id).subscribe((post:any) => {
+            if(post == null)
+            alert("RECORD DELETED.....");
+        })
+       
     };
 
 
     edit(id: any) {
+        
         this.isAdd = false;
-        let empIndex = this.employee.find((s: any) => s.id == id);
-        this.form.setValue(empIndex);
-        // this.form.value.title = empIndex.title;
-        // this.form.value.discription = empIndex.discription;
-        // this.form.value.date = empIndex.date;
-
+        this.postDataService.edit(id,this.form).subscribe((post: any) =>{
+            
+        })
 
     }
-    Addfun() {
-        let leg: any = { id: '', title: '', discription: '', date: '' };
-        leg.id = this.form.value.id;
-        leg.title = this.form.value.title;
-        leg.discription = this.form.value.discription;
-        leg.date = this.form.value.date;
-
-        this.employee.push(leg);
-    }
+    
+    
 
 }
