@@ -15,6 +15,8 @@ import { JwtInterceptor, ErrorInterceptor } from './_helpers';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
+import {InputMaskModule} from 'primeng/inputmask';
+import {CardModule} from 'primeng/card';
 
 
 @NgModule({
@@ -22,6 +24,7 @@ import {TableModule} from 'primeng/table';
     AppComponent,
     HomeComponent,
     LoginComponent,
+
   
   ],
   imports: [
@@ -31,7 +34,9 @@ import {TableModule} from 'primeng/table';
     HttpClientModule,
     InputTextModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    InputMaskModule,
+    CardModule
     
     
   ],

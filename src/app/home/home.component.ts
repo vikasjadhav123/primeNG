@@ -9,7 +9,7 @@ import { PostDataService } from '../_services/post-data.service';
 
 
 
-@Component({ templateUrl: 'home.component.html' })
+@Component({ templateUrl: 'home.component.html', })
 export class HomeComponent {
     loading = false;
     users: User[] = [];

@@ -1,110 +1,94 @@
-﻿<div class="card mt-4">
-    <h4 class="card-header">You're logged in</h4>
-    <div class="card-body">
-
-        <h6>Users</h6>
-        <div *ngIf="loading" class="spinner-border spinner-border-sm"></div>
+﻿<div style="background-color: rgb(241, 248, 246);" class="card mt-4">
+    <p-card header="You're logged in">
         <ul *ngIf="users">
-            <li *ngFor="let user of users">{{user.firstName}} {{user.lastName}}</li>
+            <ol *ngFor="let user of users">WELCOME {{user.firstName}} {{user.lastName}}</ol>
         </ul>
-    </div>
-
-
-    <br>
+    </p-card>
+    
     <form [formGroup]="form">
-    
-      <div style="background-color: rgb(241, 248, 246);border: 1px solid rgb(180, 136, 136);" class="container">
-        <div class="row">
-          <div style="border: 1px solid red;" class="col-sm-5">
+        <div  class="container">
             <label>
-              <h4>Post Information</h4>
+                <h4>Post Information</h4>
             </label>
             <hr>
-    
-            <div class="form-group" class="col-3">
-              <label for="id">ID:</label>
-              <input pInputText formControlName="id" id="id" type="text" class="form-control">
+
+            <div class="form-group">
+                <label for="id">ID:</label>
+                <input pInputText formControlName="id" id="id" type="text" class="form-control">
             </div>
-    
-            <div class="col-3">
-              <label for="title">Title:</label>
-              <input pInputText formControlName="title" id="title" type="text" class="form-control">
+
+            <div class="form-group">
+                <label for="title">Title:</label>
+                <input pInputText formControlName="title" id="title" type="text" class="form-control">
             </div>
-    
-            <br>
-    
-            <div class="form-group" class="col-3">
-              <label>Discription:</label> &nbsp;
-              <input pInputText formControlName="discription" id="discription" type="text" class="from-controls">
+
+            <div class="form-group">
+                <label for="discription">Description:</label>
+                <input pInputText formControlName="discription" id="discription" type="text" class="form-control">
             </div>
-    
-            <br>
-    
-            <div class="form-group" class="col-3">
-              <label>Publish Date</label>
-              <input pInputText formControlName="date" id="date" type="text" class="form-control">
+
+            <div class="form-group">
+                <label for="date">Publish Date : &nbsp;</label>
+                <p-inputMask formControlName="date" id="date" mask="99/99/9999" placeholder="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
             </div>
-    
-            <br>
-    
-            <div class="row">
-              <div class="col-sm-6">
-                <button pButton type="button" label=" {{isAdd ? 'Add' : 'Update'}}" (click)="Submit()"[disabled]="!form.valid">    
-                </button>  
-              </div>
-              <div class="col-sm-6">
-                <div>
-                  <button pButton type="button" label=" Reset" (click)="form.reset()"></button>
-                </div>
-              </div>
-            </div>
-    
-            <br>
-    
-          </div>
-    
-    
-          <div class="col-sm-7">
-            <label>
-              <h4>Post Details</h4>
-            </label>
-            <hr>
-    
-            <p-table  [value]="employee">
-                <ng-template pTemplate="header">
-                <tr>
-                  <th>ID</th>
-                  <th>Title</th>
-                  <th>Desc</th>
-                  <th>StartDate</th>
-                  <th>Action</th>
-                </tr>
-                </ng-template>
+
+            <br>            
             
-            <ng-template pTemplate="body" let-e>
-                <tr>
-                  <td>{{e.id}}</td>
-                  <td>{{e.title}}</td>
-                  <td>{{e.discription}}</td>
-                  <td>{{e.date}}</td>
-                  <td>
-                    <button  pButton type="button" label=" Delete" (click)="deleterecord(e.id)" ></button>
-                  </td>
-                  <td>
-                    <button  pButton type="button" label=" Edit" (click)="edit(e.id)"></button>
-                  </td>
-                  
-                </tr>
-              </ng-template>
-            </p-table>
-    
-          </div>
-    
+            <div class="row">
+                <div class="col-sm-8">
+                    <button pButton type="button" label=" {{isAdd ? 'Add' : 'Update'}}" (click)="Submit()"
+                        [disabled]="!form.valid">
+                    </button>
+                </div>
+                <div class="col-sm-4">
+                    <div>
+                        <button pButton type="button" label=" Reset" (click)="form.reset()"></button>
+                    </div>
+                </div>
+            </div>
+
+            <br>
+
         </div>
-    
-    
-      </div>
-    </form> 
-    
+
+        <div>
+            <label>
+                <h4>Post Details</h4>
+            </label>
+            <hr>
+
+            <p-table [value]="employee">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>ID</th>
+                        <th>Title</th>
+                        <th>Desc</th>
+                        <th>StartDate</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-e>
+                    <tr>
+                        <td>{{e.id}}</td>
+                        <td>{{e.title}}</td>
+                        <td>{{e.discription}}</td>
+                        <td>{{e.date}}</td>
+                        <td>
+                            <button pButton type="button" label=" Delete" (click)="deleterecord(e.id)"></button>
+                        </td>
+                        <td>
+                            <button pButton type="button" label=" Edit" (click)="edit(e.id)"></button>
+                        </td>
+
+                    </tr>
+                </ng-template>
+            </p-table>
+
+
+
+        </div>
+    </form>
+
 
 </div>
