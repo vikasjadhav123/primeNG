@@ -8,7 +8,10 @@ import { Observable, of, pipe } from 'rxjs';
 })
 export class PostDataService {
 
-  employee: any = [];
+  employee: any = [  
+                     { id : 1, title : 'PrimeNG', discription : 'Desingning', date : '25/10/1996' },
+                     { id : 2, title : 'Angular', discription : 'Develoment', date : '01/10/2005' }
+                  ];
 
   constructor() {  }
 
