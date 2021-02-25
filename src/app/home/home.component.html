@@ -1,94 +1,52 @@
-﻿<div style="background-color: rgb(241, 248, 246);" class="card mt-4">
-    <p-card header="You're logged in">
-        <ul *ngIf="users">
-            <ol *ngFor="let user of users">WELCOME {{user.firstName}} {{user.lastName}}</ol>
-        </ul>
-    </p-card>
-    
-    <form [formGroup]="form">
-        <div  class="container">
-            <label>
-                <h4>Post Information</h4>
-            </label>
-            <hr>
+﻿<p-card>
+    <div *ngIf="users">
+        <span *ngFor="let user of users"><b>WELCOME</b> {{user.firstName}} {{user.lastName}}</span>
+    </div>
+</p-card>
 
-            <div class="form-group">
-                <label for="id">ID:</label>
-                <input pInputText formControlName="id" id="id" type="text" class="form-control">
-            </div>
+<form [formGroup]="form">
+    <hr>
+    <div style="background-color: rgb(241, 248, 246);" class="container">
+        <label><br>
+            <h4>Post Information</h4>
+        </label>
+        <hr>
 
-            <div class="form-group">
-                <label for="title">Title:</label>
-                <input pInputText formControlName="title" id="title" type="text" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="discription">Description:</label>
-                <input pInputText formControlName="discription" id="discription" type="text" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="date">Publish Date : &nbsp;</label>
-                <p-inputMask formControlName="date" id="date" mask="99/99/9999" placeholder="99/99/9999" slotChar="mm/dd/yyyy"></p-inputMask>
-            </div>
-
-            <br>            
-            
-            <div class="row">
-                <div class="col-sm-8">
-                    <button pButton type="button" label=" {{isAdd ? 'Add' : 'Update'}}" (click)="Submit()"
-                        [disabled]="!form.valid">
-                    </button>
-                </div>
-                <div class="col-sm-4">
-                    <div>
-                        <button pButton type="button" label=" Reset" (click)="form.reset()"></button>
-                    </div>
-                </div>
-            </div>
-
-            <br>
-
+        <div class="form-group">
+            <label for="id">ID:</label>
+            <input pInputText formControlName="id" id="id" type="text" class="form-control">
         </div>
 
-        <div>
-            <label>
-                <h4>Post Details</h4>
-            </label>
-            <hr>
-
-            <p-table [value]="employee">
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>ID</th>
-                        <th>Title</th>
-                        <th>Desc</th>
-                        <th>StartDate</th>
-                        <th>Action</th>
-                    </tr>
-                </ng-template>
-
-                <ng-template pTemplate="body" let-e>
-                    <tr>
-                        <td>{{e.id}}</td>
-                        <td>{{e.title}}</td>
-                        <td>{{e.discription}}</td>
-                        <td>{{e.date}}</td>
-                        <td>
-                            <button pButton type="button" label=" Delete" (click)="deleterecord(e.id)"></button>
-                        </td>
-                        <td>
-                            <button pButton type="button" label=" Edit" (click)="edit(e.id)"></button>
-                        </td>
-
-                    </tr>
-                </ng-template>
-            </p-table>
-
-
-
+        <div class="form-group">
+            <label for="title">Title:</label>
+            <input pInputText formControlName="title" id="title" type="text" class="form-control">
         </div>
-    </form>
 
+        <div class="form-group">
+            <label for="discription">Description:</label>
+            <input pInputText formControlName="discription" id="discription" type="text" class="form-control">
+        </div>
 
-</div>
+        <div class="form-group">
+            <label for="date">Publish Date : &nbsp;</label>
+            <p-inputMask formControlName="date" id="date" mask="99/99/9999" placeholder="99/99/9999"
+                slotChar="mm/dd/yyyy"></p-inputMask>
+        </div>
+
+        <br>
+
+        <div class="row">
+            <div class="col-sm-8">
+                <button pButton type="button" label=" {{isAdd ? 'Add' : 'Update'}}" (click)="Submit()"
+                    [disabled]="!form.valid">
+                </button>
+            </div>
+            <div class="col-sm-4">
+                <div>
+                    <button pButton type="button" label=" Reset" (click)="form.reset()"></button>
+                </div>
+            </div>
+        </div>
+        <br>
+    </div>
+</form>

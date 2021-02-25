@@ -2,10 +2,16 @@
 <!-- nav -->
 <nav class="navbar navbar-expand navbar-dark bg-dark" *ngIf="currentUser">
     <div class="navbar-nav">
-        <a class="nav-item nav-link" routerLink="/">Home</a>
         <a class="nav-item nav-link" (click)="logout()">Logout</a>
+        <a class="nav-item nav-link" routerLink="/">Home</a>
+        <a class="nav-item nav-link" routerLink="/post">Post</a>
     </div>
 </nav>
+
+<!-- <p-tabView *ngIf="currentUser">
+    <p-tabPanel routerLink="/" header="Home " ></p-tabPanel>
+    <p-tabPanel (click)="logout()" header="Logout " ></p-tabPanel>
+</p-tabView> 
 
 <!-- main app container -->
 <div class="container">

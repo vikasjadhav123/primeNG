@@ -17,13 +17,15 @@ import {ButtonModule} from 'primeng/button';
 import {TableModule} from 'primeng/table';
 import {InputMaskModule} from 'primeng/inputmask';
 import {CardModule} from 'primeng/card';
-
+import {TabViewModule} from 'primeng/tabview';
+import { PostComponent } from './post/post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     LoginComponent,
+    PostComponent,
 
   
   ],
@@ -36,7 +38,8 @@ import {CardModule} from 'primeng/card';
     ButtonModule,
     TableModule,
     InputMaskModule,
-    CardModule
+    CardModule,
+    TabViewModule
     
     
   ],
